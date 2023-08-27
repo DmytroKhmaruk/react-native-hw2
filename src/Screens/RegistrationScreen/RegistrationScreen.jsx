@@ -3,6 +3,7 @@ import PostsScreen from "../PostsScreen/PostsScreen";
 import Input from "../InputComponent/InputComponent";
 import Button from "../ButtonComponent/Button";
 
+
 const RegistrationScreen = () => {
     return (
         <PostsScreen>

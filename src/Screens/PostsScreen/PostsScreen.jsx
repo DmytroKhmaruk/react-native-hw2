@@ -1,13 +1,13 @@
-import { ImageBackground } from 'react-native';
+import { ImgBackground } from './StyledPostsScreen';
 
 const PostsScreen = ({ children }) => {
     
     return (
-        <ImageBackground
+        <ImgBackground
             source={require('../../img/PhotoBG.png')} 
         >
             {children}
-        </ImageBackground>
+        </ImgBackground>
     )
 }
 
