@@ -1,7 +1,7 @@
 import { InputWrapper, StyledInput } from './StyledInputComponent'
 import { useState } from "react";
 
-const Input = ({ customStyle, placeholder, onFocus, onBlur, ...rest }) => {
+const Input = ({ customStyle, placeholder, onFocus, onBlur, type, ...rest }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const handleFocus = () => {
@@ -26,7 +26,8 @@ const Input = ({ customStyle, placeholder, onFocus, onBlur, ...rest }) => {
                 placeholderTextColor='#BDBDBD'
                 isFocused={isFocused}
                 onFocus={handleFocus}
-                onBlur={handleBlur}            
+                onBlur={handleBlur}
+                secureTextEntry={type === 'password' && true}
             >   
             </StyledInput>
         </InputWrapper>

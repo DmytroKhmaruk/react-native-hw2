@@ -1,17 +1,22 @@
-import { View, Keyboard, KeyboardAvoidingView, Dimensions } from "react-native";
+import { View, Keyboard, ScrollView, KeyboardAvoidingView, Dimensions, Text } from "react-native";
 import PostsScreen from "../PostsScreen/PostsScreen";
 import Input from "../InputComponent/InputComponent";
 import Button from "../ButtonComponent/Button";
-import { LoginWrapper, KeyboardStyled, Title, Paragraph } from './StyledLoginScreen';
+import { LoginWrapper, KeyboardStyled, Title, Paragraph, LinkWrapper, NavigationLog_Reg, ShowPassword } from './StyledLoginScreen';
 import { useState, useEffect } from "react";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 
 const LoginScreen = () => {
-    const [passwordShow, setpasswordShow] = useState(false);
+    const [passwordShow, setPasswordShow] = useState(false);
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
 
+    const navigation = useNavigation();
+
     const handleShowPassword = () => {
-        setpasswordShow(!passwordShow);
+        setPasswordShow(!passwordShow);
     };
 
     useEffect(() => {
@@ -38,21 +43,38 @@ const LoginScreen = () => {
 
     return (
         <PostsScreen>
-            <KeyboardAvoidingView
+            {/* <KeyboardAvoidingView
+            > */}
+            <ScrollView
+                contentContainerStyle={{
+                    flexGrow: 1,
+                    justifyContent: 'center',
+                }}
             >
-            <LoginWrapper isKeyboardOpen={isKeyboardOpen}>
+                <LoginWrapper
+                    // isKeyboardOpen={isKeyboardOpen}
+                >
                 <Title>Увійти</Title>
                     <View>
-                    <Input
-                        customStyle={{ marginBottom: 16 }}
-                        placeholder='Адреса електронної пошти' />
-                        <Input placeholder='Пароль'
-                            type={passwordShow === false && 'password'} secureTextEntry />
+                        <Input
+                            customStyle={{ marginBottom: 16 }}
+                            placeholder='Адреса електронної пошти' />
+                        <Input
+                            placeholder='Пароль'
+                            type={passwordShow === false && 'password'}
+                        />
+                        <ShowPassword onPress={handleShowPassword}>{passwordShow === false ? 'Показати' : 'Сховати'}</ShowPassword>
                         <Button title='Увійти'></Button>
                     </View>
-                <Paragraph>Немає акаунту? Зареєструватися</Paragraph>
+                    <LinkWrapper>
+                    <Paragraph>Немає акаунту?{' '}</Paragraph>
+                        <TouchableOpacity onPress={() => navigation.navigate('Registration')}>
+                            <NavigationLog_Reg>Зареєструватися</NavigationLog_Reg>
+                        </TouchableOpacity>
+                    </LinkWrapper>
                 </LoginWrapper>
-                </KeyboardAvoidingView>
+                </ScrollView>
+                {/* </KeyboardAvoidingView> */}
         </PostsScreen>
     )
 }
