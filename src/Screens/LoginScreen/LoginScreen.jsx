@@ -2,7 +2,7 @@ import { View, Keyboard, ScrollView, KeyboardAvoidingView, Dimensions, Text } fr
 import PostsScreen from "../PostsScreen/PostsScreen";
 import Input from "../InputComponent/InputComponent";
 import Button from "../ButtonComponent/Button";
-import { LoginWrapper, KeyboardStyled, Title, Paragraph, LinkWrapper, NavigationLog_Reg, ShowPassword } from './StyledLoginScreen';
+import { LoginWrapper, KeyboardStyled, Title, Paragraph, LinkWrapper, NavigationLog_Reg, ShowPasswordLog } from './StyledLoginScreen';
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -63,7 +63,7 @@ const LoginScreen = () => {
                             placeholder='Пароль'
                             type={passwordShow === false && 'password'}
                         />
-                        <ShowPassword onPress={handleShowPassword}>{passwordShow === false ? 'Показати' : 'Сховати'}</ShowPassword>
+                        <ShowPasswordLog onPress={handleShowPassword}>{passwordShow === false ? 'Показати' : 'Сховати'}</ShowPasswordLog>
                         <Button title='Увійти'></Button>
                     </View>
                     <LinkWrapper>
